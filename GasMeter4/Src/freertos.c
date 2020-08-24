@@ -4002,53 +4002,53 @@ void M26test_Task(void const * argument)
 		free(ptUrl);
 		printf("--------------------------------------------------------------------------------------------------");
 		
-		printf("--------------------------------------------------------------------------------------------------");
-		// post  cookingSession   https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/cookingSession/TZ00000235/9088450934850394385
-		struSeverInfo->MeterId = "meter/cookingSession/KE1000000012/9088450934850394385";
-		ptPostData = "{\"cookingSessionId\":\"xxxxxxxxxxxxxxx\",\
-		\"startTime\":\"2016-08-29T09:12:33.001Z\",\
-		\"endTime\":\"2016-08-29T09:12:33.001Z\",\
-		\"endReason\":2,\
-		\"endCumulativeMass\":105.97,\
-		\"startCumulativeMass\":100.9,\
-		\"gasConsumed\":4,\
-		\"startCredit\":34,\
-		\"endCredit\":22,\
-		\"creditConsumed\":12,\
-		\"gasRemaining\":12000\
-		}";		
-		ptUrl = Sever_Address_GET( struSeverInfo,"");
-		printf("Sever_Address_GET\r\n");
-		Send_AT_cmd[9].SendCommand = ptUrl;
-		u8UrlLength = strlen(ptUrl)-2;
-		CmdLength(u8UrlLength,9);  //根据发送URL的长度		
-		ptPost = Post_Data_Cmd( ptPostData);
-		Send_AT_cmd[15].SendCommand = ptPost;
-		u8UrlLength = strlen(ptPost)-2;
-		CmdLength(u8UrlLength,15);  //根据发送POST的长度
-		SendPostCommand();
-		free(ptUrl);
-		free(ptPost);
-		
-		printf("--------------------------------------------------------------------------------------------------");
+//		printf("--------------------------------------------------------------------------------------------------");
+//		// post  cookingSession   https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/cookingSession/TZ00000235/9088450934850394385
+//		struSeverInfo->MeterId = "meter/cookingSession/KE1000000012/9088450934850394385";
+//		ptPostData = "{\"cookingSessionId\":\"xxxxxxxxxxxxxxx\",\
+//		\"startTime\":\"2016-08-29T09:12:33.001Z\",\
+//		\"endTime\":\"2016-08-29T09:12:33.001Z\",\
+//		\"endReason\":2,\
+//		\"endCumulativeMass\":105.97,\
+//		\"startCumulativeMass\":100.9,\
+//		\"gasConsumed\":4,\
+//		\"startCredit\":34,\
+//		\"endCredit\":22,\
+//		\"creditConsumed\":12,\
+//		\"gasRemaining\":12000\
+//		}";		
+//		ptUrl = Sever_Address_GET( struSeverInfo,"");
+//		printf("Sever_Address_GET\r\n");
+//		Send_AT_cmd[9].SendCommand = ptUrl;
+//		u8UrlLength = strlen(ptUrl)-2;
+//		CmdLength(u8UrlLength,9);  //根据发送URL的长度		
+//		ptPost = Post_Data_Cmd( ptPostData);
+//		Send_AT_cmd[15].SendCommand = ptPost;
+//		u8UrlLength = strlen(ptPost)-2;
+//		CmdLength(u8UrlLength,15);  //根据发送POST的长度
+//		SendPostCommand();
+//		free(ptUrl);
+//		free(ptPost);
+//		
+//		printf("--------------------------------------------------------------------------------------------------");
 		printf("--------------------------------------------------------------------------------------------------");
 		//post settings   https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/settings/TZ00000235
 		struSeverInfo->MeterId = "meter/settings/TZ00000235";
-		ptPostData = "{\"command\": \"STUP\",\
+		ptPostData = "{\"command\":\"STUP\",\
 		\"serverIPaddress\": \"198.51.100.42\",\
 		\"serverPort\": 5070,\
+		\"serverURL\": \"https//xxxxx/xxxx\",\
 		\"gasLevel\": 9800,\
 		\"dataUploadPeriod\": 360,\
 		\"warningLowBatteryVoltage\": 4.5,\
 		\"warningLowCreditBalance\": 80,\
 		\"warningLowGasVolumeAlarm\": 2000,\
-		\"metercurrency\": \"KES\",\
+		\"metercurrency\": \"KSH\",\
 		\"uploadFrequency\": 360,\
 		\"uploadTime\": 0,\
 		\"sensorSlope\": 2.3,\
-		\"sensor:Intercept\": 0.1,\
-		\"infoDatestamp\": \"2016-08-29T09:12:33.001Z\"\
-		}";		
+		\"sensorIntercept\": 0.1,\
+		\"settingDatestamp\": \"2016-08-29T09:12:33.001Z\"}";		
 		ptUrl = Sever_Address_GET( struSeverInfo,"");
 		printf("Sever_Address_GET\r\n");
 		Send_AT_cmd[9].SendCommand = ptUrl;
@@ -4066,16 +4066,16 @@ void M26test_Task(void const * argument)
 		
 		//post status  https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/status/TZ00000235
 		struSeverInfo->MeterId = "meter/status/TZ00000235";
-		ptPostData = "{\"batteryVoltage\": 2,\
-		\"gasTemperature\": 15,\
-	\"tankLockStatus\": true,\
-	\"tankSensorStatus\": false,\
-	\"gsmSignalIntensity\": 25,\
-	\"needleSensorStatus\": false,\
-	\"lidLightSensorStatus\": false\
-	\"electronicValveStatus\": false,\
-	\"lidElectricLockStatus\": false\
-	}";		
+		ptPostData = "{\"batteryVoltage\": 4,\
+		\"gasTemperature\": 30,\
+		\"tankLockStatus\": false,\
+		\"tankSensorStatus\": false,\
+		\"gsmSignalIntensity\": 15,\
+		\"needleSensorStatus\": false,\
+		\"lidLightSensorStatus\": false,\
+		\"electronicValveStatus\": false,\
+		\"lidElectricLockStatus\": false,\
+		\"meterStatusDatestamp\": \"2020-08-15T09:12:33.001Z\"}";		
 		ptUrl = Sever_Address_GET( struSeverInfo,"");
 		printf("Sever_Address_GET\r\n");
 		Send_AT_cmd[9].SendCommand = ptUrl;
@@ -4089,7 +4089,39 @@ void M26test_Task(void const * argument)
 		free(ptUrl);
 		free(ptPost);		
 		printf("--------------------------------------------------------------------------------------------------");
-
+		printf("--------------------------------------------------------------------------------------------------");
+		
+		//WARNING https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/warning/TZ00000131
+		struSeverInfo->MeterId = "meter/warning/TZ00000131";
+		ptPostData = "{\"warningName\":\"Low Gas Warning\",\
+		\"warningDateTimestamp\":\"2016-08-29T09:12:33.001Z\",\
+		\"warningId\":\"xxxxx\",\
+		\"lowGas\":112,\
+		\"lidOpen\":false,\
+		\"lowCredit\":false,\
+		\"lowBattery\":4.2,\
+		\"gasTemperature\":31.1,\
+		\"tankSensorStatus\":false,\
+		\"tankSensorStatus2\":false,\
+		\"electricLockStatus\":false,\
+		\"gsmSignalIntensity\":20.1,\
+		\"needleSensorStatus\":false,\
+		\"electricValveStatus\":false}";		
+		ptUrl = Sever_Address_GET( struSeverInfo,"");
+		printf("Sever_Address_GET\r\n");
+		Send_AT_cmd[9].SendCommand = ptUrl;
+		u8UrlLength = strlen(ptUrl)-2;
+		CmdLength(u8UrlLength,9);  //根据发送URL的长度		
+		ptPost = Post_Data_Cmd( ptPostData);
+		Send_AT_cmd[15].SendCommand = ptPost;
+		u8UrlLength = strlen(ptPost)-2;
+		CmdLength(u8UrlLength,15);  //根据发送POST的长度
+		SendPostCommand();
+		free(ptUrl);
+		free(ptPost);		
+		printf("--------------------------------------------------------------------------------------------------");		
+		
+		
 	}
 }
 
