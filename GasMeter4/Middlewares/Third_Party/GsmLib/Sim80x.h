@@ -135,8 +135,8 @@ typedef enum
 //######################################################################################################################
 typedef struct
 {
-//    char                  SendCommand[128];
-		char                  SendCommand[1024];		//modify by lwl
+    char                  SendCommand[128];
+//		char                  SendCommand[1024];		//modify by lwl
     char                  ReceiveAnswer[10][64];
     uint32_t              SendCommandStartTime;
     uint32_t              ReceiveAnswerExeTime;

@@ -676,23 +676,23 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-//  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 512);
-//  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 512);
+  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
-//  /* definition and creation of myKeyTask */
-//  osThreadDef(myKeyTask, StartkeyTask, osPriorityNormal, 0, 256);
-//  myKeyTaskHandle = osThreadCreate(osThread(myKeyTask), NULL);
+  /* definition and creation of myKeyTask */
+  osThreadDef(myKeyTask, StartkeyTask, osPriorityNormal, 0, 256);
+  myKeyTaskHandle = osThreadCreate(osThread(myKeyTask), NULL);
 
-//  /* definition and creation of myLedTask */
-//  osThreadDef(myLedTask, StartLedTask, osPriorityNormal, 0, 512);
-//  myLedTaskHandle = osThreadCreate(osThread(myLedTask), NULL);
+  /* definition and creation of myLedTask */
+  osThreadDef(myLedTask, StartLedTask, osPriorityNormal, 0, 512);
+  myLedTaskHandle = osThreadCreate(osThread(myLedTask), NULL);
 
-//  /* definition and creation of myTaskCmdAnalyz */
-//  osThreadDef(myTaskCmdAnalyz, StartCmdAnalyzTask, osPriorityNormal, 0, 256);
-//  myTaskCmdAnalyzHandle = osThreadCreate(osThread(myTaskCmdAnalyz), NULL);
+  /* definition and creation of myTaskCmdAnalyz */
+  osThreadDef(myTaskCmdAnalyz, StartCmdAnalyzTask, osPriorityNormal, 0, 256);
+  myTaskCmdAnalyzHandle = osThreadCreate(osThread(myTaskCmdAnalyz), NULL);
 
-	osThreadDef(M26test, M26test_Task, osPriorityNormal, 0, 512);
-  myTaskCmdAnalyzHandle = osThreadCreate(osThread(M26test), NULL);
+//	osThreadDef(M26test, M26test_Task, osPriorityNormal, 0, 512);
+//  myTaskCmdAnalyzHandle = osThreadCreate(osThread(M26test), NULL);
   /* definition and creation of myTaskSim80xBuf */
   osThreadDef(myTaskSim80xBuf, Sim80xBuffTask, osPriorityNormal, 0, 256);
   myTaskSim80xBufHandle = osThreadCreate(osThread(myTaskSim80xBuf), NULL);
@@ -4002,35 +4002,33 @@ void M26test_Task(void const * argument)
 		free(ptUrl);
 		printf("--------------------------------------------------------------------------------------------------");
 		
-//		printf("--------------------------------------------------------------------------------------------------");
-//		// post  cookingSession   https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/cookingSession/TZ00000235/9088450934850394385
-//		struSeverInfo->MeterId = "meter/cookingSession/KE1000000012/9088450934850394385";
-//		ptPostData = "{\"cookingSessionId\":\"xxxxxxxxxxxxxxx\",\
-//		\"startTime\":\"2016-08-29T09:12:33.001Z\",\
-//		\"endTime\":\"2016-08-29T09:12:33.001Z\",\
-//		\"endReason\":2,\
-//		\"endCumulativeMass\":105.97,\
-//		\"startCumulativeMass\":100.9,\
-//		\"gasConsumed\":4,\
-//		\"startCredit\":34,\
-//		\"endCredit\":22,\
-//		\"creditConsumed\":12,\
-//		\"gasRemaining\":12000\
-//		}";		
-//		ptUrl = Sever_Address_GET( struSeverInfo,"");
-//		printf("Sever_Address_GET\r\n");
-//		Send_AT_cmd[9].SendCommand = ptUrl;
-//		u8UrlLength = strlen(ptUrl)-2;
-//		CmdLength(u8UrlLength,9);  //根据发送URL的长度		
-//		ptPost = Post_Data_Cmd( ptPostData);
-//		Send_AT_cmd[15].SendCommand = ptPost;
-//		u8UrlLength = strlen(ptPost)-2;
-//		CmdLength(u8UrlLength,15);  //根据发送POST的长度
-//		SendPostCommand();
-//		free(ptUrl);
-//		free(ptPost);
-//		
-//		printf("--------------------------------------------------------------------------------------------------");
+		printf("--------------------------------------------------------------------------------------------------");
+		// post  cookingSession   https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/cookingSession/TZ00000235/9088450934850394385
+		struSeverInfo->MeterId = "meter/cookingSession/TZ00000111/9088450934850394385";
+		ptPostData = "{\"cookingSessionId\": \"220erbdsbudwofjewo4234fdwb\",\
+		\"startTime\": \"2020-08-29T09:12:33.001Z\",\
+		\"endTime\": \"2020-08-29T09:12:33.001Z\",\
+		\"endReason\": 2,\
+		\"endCumulativeMass\": 105.97,\
+		\"startCumulativeMass\": 100.9,\
+		\"startCredit\": 34,\
+		\"endCredit\": 52,\
+		\"gasRemaining\": 18000,\
+		\"csrpTimestamp\":\"2020-08-29T09:12:33.001Z\"}\
+		";		
+		ptUrl = Sever_Address_GET( struSeverInfo,"");
+		Send_AT_cmd[9].SendCommand = ptUrl;
+		u8UrlLength = strlen(ptUrl)-2;
+		CmdLength(u8UrlLength,9);  //根据发送URL的长度		
+		ptPost = Post_Data_Cmd( ptPostData);
+		Send_AT_cmd[15].SendCommand = ptPost;
+		u8UrlLength = strlen(ptPost)-2;
+		CmdLength(u8UrlLength,15);  //根据发送POST的长度
+		SendPostCommand();
+		free(ptUrl);
+		free(ptPost);
+		
+		printf("--------------------------------------------------------------------------------------------------");
 		printf("--------------------------------------------------------------------------------------------------");
 		//post settings   https://ateei9d448.execute-api.eu-west-1.amazonaws.com/testing/meter/settings/TZ00000235
 		struSeverInfo->MeterId = "meter/settings/TZ00000235";
@@ -4372,18 +4370,7 @@ void  Sim80x_BufferProcess(void)
 		}
 		
 	}
- 
-	
-	
-    //##################################################
-    //---       Buffer Process
-    //##################################################
-//#if (_SIM80X_DEBUG==2)
-//    printf("%s",strStart);
-//#endif
-    Sim80x.UsartRxIndex=0;
-//    memset(Sim80x.UsartRxBuffer,0,_SIM80X_BUFFER_SIZE);
-    
+  Sim80x.UsartRxIndex=0;    
 }
 
 void Sim80xBuffTask(void const * argument)

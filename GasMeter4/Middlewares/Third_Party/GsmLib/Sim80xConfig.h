@@ -10,7 +10,7 @@
 
 #define	_SIM80X_USE_POWER_KEY   	  1    //就是开机键
 
-#define	_SIM80X_BUFFER_SIZE			    2048
+#define	_SIM80X_BUFFER_SIZE			    1024
 
 #define _SIM80X_DMA_TRANSMIT        1
 
